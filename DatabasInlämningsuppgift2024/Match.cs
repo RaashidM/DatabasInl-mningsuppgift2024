@@ -11,6 +11,7 @@ namespace DatabasInlämningsuppgift2024
         public int Id { get; set; }
         public DateTime MatchDate { get; set; }
         public int Attandance { get; set; }
+        public List<TeamHasMatch> Matches { get; set; } = new List<TeamHasMatch>();
 
         public Match(int id, DateTime matchDate, int attandance)
         {

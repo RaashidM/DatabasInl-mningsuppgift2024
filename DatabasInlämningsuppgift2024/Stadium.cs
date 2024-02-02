@@ -12,6 +12,7 @@ namespace DatabasInlämningsuppgift2024
         public string Name { get; set; }
         public int Capacity { get; set; }
         public string City { get; set; }
+        public List<Match> Games { get; set; } = new List<Match>();
 
         public Stadium(int id, string name, int capacity, string city)
         {
