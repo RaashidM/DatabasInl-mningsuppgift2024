@@ -12,8 +12,8 @@ namespace DatabasInlämningsuppgift2024
     {
         string server = "localhost";
         string database = "databasInlämning2024";
-        string username = "root";
-        string password = "Raashido99";
+        string username = "user1";
+        string password = "password";
 
         string connectionString = "";
 
@@ -133,26 +133,26 @@ namespace DatabasInlämningsuppgift2024
             connection.Open();
 
             string query = @"
-    SELECT
-        team_has_match.match_id,
-        MAX(CASE WHEN team_has_match.is_hometeam = TRUE THEN team.team_name END) AS home_team,
-        MAX(CASE WHEN team_has_match.is_hometeam = FALSE THEN away_team.team_name END) AS away_team,
-        stadium.stadium_name,
-        MAX(team_has_match.result) AS result,
-        match1.attendance
-    FROM
-        team_has_match
-    JOIN
-        match1 ON team_has_match.match_id = match1.match_id
-    LEFT JOIN
-        team ON team_has_match.team_id = team.team_id AND team_has_match.is_hometeam = TRUE
-    LEFT JOIN
-        team away_team ON team_has_match.team_id = away_team.team_id AND team_has_match.is_hometeam = FALSE
-    JOIN
-        stadium ON match1.stadium_id = stadium.stadium_id
-    GROUP BY
-        team_has_match.match_id, stadium.stadium_name, match1.attendance;
-";
+                           SELECT
+                               team_has_match.match_id,
+                               MAX(CASE WHEN team_has_match.is_hometeam = TRUE THEN team.team_name END) AS home_team,
+                               MAX(CASE WHEN team_has_match.is_hometeam = FALSE THEN away_team.team_name END) AS away_team,
+                               stadium.stadium_name,
+                               MAX(team_has_match.result) AS result,
+                               match1.attendance
+                           FROM
+                               team_has_match
+                           JOIN
+                               match1 ON team_has_match.match_id = match1.match_id
+                           LEFT JOIN
+                               team ON team_has_match.team_id = team.team_id AND team_has_match.is_hometeam = TRUE
+                           LEFT JOIN
+                               team away_team ON team_has_match.team_id = away_team.team_id AND team_has_match.is_hometeam = FALSE
+                           JOIN
+                               stadium ON match1.stadium_id = stadium.stadium_id
+                           GROUP BY
+                               team_has_match.match_id, stadium.stadium_name, match1.attendance;
+                       ";
 
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();

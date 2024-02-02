@@ -36,6 +36,7 @@
             label1 = new Label();
             teamInfo = new Label();
             matchDetailsListBox = new ListBox();
+            updateBox = new TextBox();
             SuspendLayout();
             // 
             // matchListBox
@@ -49,14 +50,14 @@
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(848, 459);
+            searchBox.Location = new Point(848, 334);
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(322, 39);
             searchBox.TabIndex = 1;
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(935, 527);
+            searchButton.Location = new Point(935, 399);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(150, 46);
             searchButton.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(935, 608);
+            updateButton.Location = new Point(935, 566);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(150, 46);
             updateButton.TabIndex = 3;
@@ -87,11 +88,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(912, 408);
+            label1.Location = new Point(848, 270);
             label1.Name = "label1";
-            label1.Size = new Size(200, 32);
+            label1.Size = new Size(317, 32);
             label1.TabIndex = 5;
-            label1.Text = "Search For Teams";
+            label1.Text = "Search For Matches Using Id";
             // 
             // teamInfo
             // 
@@ -110,11 +111,19 @@
             matchDetailsListBox.Size = new Size(718, 740);
             matchDetailsListBox.TabIndex = 7;
             // 
+            // updateBox
+            // 
+            updateBox.Location = new Point(848, 498);
+            updateBox.Name = "updateBox";
+            updateBox.Size = new Size(322, 39);
+            updateBox.TabIndex = 8;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2035, 795);
+            Controls.Add(updateBox);
             Controls.Add(matchDetailsListBox);
             Controls.Add(teamInfo);
             Controls.Add(label1);
@@ -139,5 +148,6 @@
         private Label label1;
         private Label teamInfo;
         private ListBox matchDetailsListBox;
+        private TextBox updateBox;
     }
 }

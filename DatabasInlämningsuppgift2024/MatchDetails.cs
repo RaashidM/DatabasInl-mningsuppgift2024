@@ -15,7 +15,7 @@ namespace DatabasInlämningsuppgift2024
         public string Result { get; set; }
         public int Attendance { get; set; }
 
-        // Default parameterless constructor
+      
         public MatchDetails()
         {
         }
