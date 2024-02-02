@@ -59,33 +59,105 @@ namespace DatabasInlämningsuppgift2024
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            string searchTerm = searchBox.Text.Trim();
-
-            if (int.TryParse(searchTerm, out int searchMatchId))
+            
+            if (int.TryParse(searchBox.Text, out int searchedMatchId))
             {
-                // Filter matches based on the search matchId
-                var filteredMatches = matches.Values
-                    .Where(match => match.Id == searchMatchId)
-                    .ToList();
+                
+                matchListBox.Items.Clear();
+                matchDetailsListBox.Items.Clear();
 
-                // Update the matchListBox with filtered matches
-                UpdateMatchBox(filteredMatches);
+                
+                Match searchedMatch = matches.Values.FirstOrDefault(match => match.Id == searchedMatchId);
+
+                if (searchedMatch != null)
+                {
+                   
+                    matchListBox.Items.Add($"Match: {searchedMatch.Id} Date: {searchedMatch.MatchDate} Attendance: {searchedMatch.Attendance} People");
+
+                  
+                    MatchDetails matchDetails = matchDetailsDictionary[searchedMatch.Id];
+
+                   
+                    matchDetailsListBox.Items.Add($"Home Team: {matchDetails.HomeTeam}");
+                    matchDetailsListBox.Items.Add($"Away Team: {matchDetails.AwayTeam}");
+                    matchDetailsListBox.Items.Add($"Stadium: {matchDetails.Stadium}");
+                    matchDetailsListBox.Items.Add($"Result: {matchDetails.Result}");
+                    matchDetailsListBox.Items.Add($"Attendance: {matchDetails.Attendance}");
+                }
+                else
+                {
+                   
+                    MessageBox.Show($"No match found with Match ID: {searchedMatchId}");
+                }
             }
             else
             {
-                MessageBox.Show("Please enter a valid match ID.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+                MessageBox.Show("Please enter a valid Match ID");
             }
         }
 
+
         private void updateButton_Click(object sender, EventArgs e)
         {
+           
+            int selectedIndex = matchListBox.SelectedIndex;
 
+            if (selectedIndex == -1)
+            {
+                MessageBox.Show("Please select a match to update.", "No Match Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            Match selectedMatch = matches.Values.ToList()[selectedIndex];
+            int matchIdToUpdate = selectedMatch.Id;
+
+            
+            string newMatchDateText = updateBox.Text.Trim();
+
+            if (DateTime.TryParse(newMatchDateText, out DateTime newMatchDate))
+            {
+               
+                selectedMatch.MatchDate = newMatchDate;
+
+                
+                UpdateMatchBox();
+
+                
+                databaseConnection.UpdateMatchDate(matchIdToUpdate, newMatchDate);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid date in the format yyyy-MM-dd HH:mm:ss.", "Invalid Date Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            
+            int selectedIndex = matchListBox.SelectedIndex;
 
+            if (selectedIndex == -1)
+            {
+                MessageBox.Show("Please select a match to delete.", "No Match Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            Match selectedMatch = matches.Values.ToList()[selectedIndex];
+            int matchIdToDelete = selectedMatch.Id;
+
+           
+            matches.Remove(matchIdToDelete);
+
+           
+            UpdateMatchBox();
+
+            
+            databaseConnection.DeleteMatch(matchIdToDelete);
         }
+
 
         private void UpdateMatchBox(IEnumerable<Match> filteredMatches = null)
         {
@@ -93,7 +165,7 @@ namespace DatabasInlämningsuppgift2024
 
             if (filteredMatches == null)
             {
-                // If no filtered matches provided, use all matches
+                
                 foreach (Match match in matches.Values.ToList())
                 {
                     matchListBox.Items.Add($"Match {match.Id} Date: {match.MatchDate} Attendance: {match.Attendance} People");
@@ -101,7 +173,7 @@ namespace DatabasInlämningsuppgift2024
             }
             else
             {
-                // Use filtered matches
+               
                 foreach (Match match in filteredMatches)
                 {
                     matchListBox.Items.Add($"Match {match.Id} Date: {match.MatchDate} Attendance: {match.Attendance} People");

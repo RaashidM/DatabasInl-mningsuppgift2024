@@ -37,6 +37,7 @@
             teamInfo = new Label();
             matchDetailsListBox = new ListBox();
             updateBox = new TextBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // matchListBox
@@ -67,7 +68,7 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(935, 566);
+            updateButton.Location = new Point(935, 598);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(150, 46);
             updateButton.TabIndex = 3;
@@ -90,9 +91,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(848, 270);
             label1.Name = "label1";
-            label1.Size = new Size(317, 32);
+            label1.Size = new Size(322, 32);
             label1.TabIndex = 5;
-            label1.Text = "Search For Matches Using Id";
+            label1.Text = "Search For Matches Using Id:";
             // 
             // teamInfo
             // 
@@ -113,16 +114,26 @@
             // 
             // updateBox
             // 
-            updateBox.Location = new Point(848, 498);
+            updateBox.Location = new Point(848, 544);
             updateBox.Name = "updateBox";
             updateBox.Size = new Size(322, 39);
             updateBox.TabIndex = 8;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(917, 490);
+            label2.Name = "label2";
+            label2.Size = new Size(185, 32);
+            label2.TabIndex = 9;
+            label2.Text = "Update Date To:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2035, 795);
+            Controls.Add(label2);
             Controls.Add(updateBox);
             Controls.Add(matchDetailsListBox);
             Controls.Add(teamInfo);
@@ -149,5 +160,6 @@
         private Label teamInfo;
         private ListBox matchDetailsListBox;
         private TextBox updateBox;
+        private Label label2;
     }
 }

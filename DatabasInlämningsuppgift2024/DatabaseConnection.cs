@@ -176,8 +176,67 @@ namespace DatabasInlämningsuppgift2024
             return matchDetails;
         }
 
+        public void UpdateMatchDate(int matchId, DateTime newMatchDate)
+        {
+            string updateQuery = "UPDATE match1 SET match_date = @newMatchDate WHERE match_id = @matchId";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(updateQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@newMatchDate", newMatchDate);
+                    command.Parameters.AddWithValue("@matchId", matchId);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    
+                   
+                }
+
+            }
+        }
+
+        public void DeleteMatch(int matchId)
+        {
+            
+            string deleteTeamHasMatchQuery = "DELETE FROM team_has_match WHERE match_id = @matchId";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(deleteTeamHasMatchQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@matchId", matchId);
+
+                    int rowsAffectedTeamHasMatch = command.ExecuteNonQuery();
+
+                  
+                }
+            }
+
+           
+            string deleteMatchQuery = "DELETE FROM match1 WHERE match_id = @matchId";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(deleteMatchQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@matchId", matchId);
+
+                    int rowsAffectedMatch = command.ExecuteNonQuery();
+
+                   
+                }
+            }
+        }
+
     }
 
-    
+
 }
 
