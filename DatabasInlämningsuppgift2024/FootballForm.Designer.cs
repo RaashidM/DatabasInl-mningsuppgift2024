@@ -34,6 +34,8 @@
             updateButton = new Button();
             deleteButton = new Button();
             label1 = new Label();
+            teamInfo = new Label();
+            matchDetailsListBox = new ListBox();
             SuspendLayout();
             // 
             // matchListBox
@@ -42,19 +44,19 @@
             matchListBox.ItemHeight = 32;
             matchListBox.Location = new Point(12, 12);
             matchListBox.Name = "matchListBox";
-            matchListBox.Size = new Size(395, 740);
+            matchListBox.Size = new Size(705, 740);
             matchListBox.TabIndex = 0;
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(591, 468);
+            searchBox.Location = new Point(848, 459);
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(322, 39);
             searchBox.TabIndex = 1;
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(678, 543);
+            searchButton.Location = new Point(935, 527);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(150, 46);
             searchButton.TabIndex = 2;
@@ -64,7 +66,7 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(678, 633);
+            updateButton.Location = new Point(935, 608);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(150, 46);
             updateButton.TabIndex = 3;
@@ -74,7 +76,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(678, 721);
+            deleteButton.Location = new Point(935, 706);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(150, 46);
             deleteButton.TabIndex = 4;
@@ -85,17 +87,36 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(653, 405);
+            label1.Location = new Point(912, 408);
             label1.Name = "label1";
             label1.Size = new Size(200, 32);
             label1.TabIndex = 5;
             label1.Text = "Search For Teams";
             // 
+            // teamInfo
+            // 
+            teamInfo.AutoSize = true;
+            teamInfo.Location = new Point(619, 735);
+            teamInfo.Name = "teamInfo";
+            teamInfo.Size = new Size(0, 32);
+            teamInfo.TabIndex = 6;
+            // 
+            // matchDetailsListBox
+            // 
+            matchDetailsListBox.FormattingEnabled = true;
+            matchDetailsListBox.ItemHeight = 32;
+            matchDetailsListBox.Location = new Point(1305, 16);
+            matchDetailsListBox.Name = "matchDetailsListBox";
+            matchDetailsListBox.Size = new Size(718, 740);
+            matchDetailsListBox.TabIndex = 7;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1278, 795);
+            ClientSize = new Size(2035, 795);
+            Controls.Add(matchDetailsListBox);
+            Controls.Add(teamInfo);
             Controls.Add(label1);
             Controls.Add(deleteButton);
             Controls.Add(updateButton);
@@ -116,5 +137,7 @@
         private Button updateButton;
         private Button deleteButton;
         private Label label1;
+        private Label teamInfo;
+        private ListBox matchDetailsListBox;
     }
 }

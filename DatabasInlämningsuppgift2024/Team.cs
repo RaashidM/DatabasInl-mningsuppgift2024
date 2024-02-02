@@ -24,5 +24,11 @@ namespace DatabasInlämningsuppgift2024
             FoundedYear = foundedYear;
             Coach = coach;
         }
+
+        public string GetInfo()
+        {
+            return "Team Id: " + Id + ", Team Name: " + Name + ", Founded Year: " + FoundedYear + ", Coach: " + Coach;
+        }
+       
     }
 }
